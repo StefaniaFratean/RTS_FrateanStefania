@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 
 import javax.swing.JProgressBar;
 
-public class Window extends JFrame {
+public class Window extends JFrame implements Observer {
 
     ArrayList<JProgressBar> bars = new ArrayList<>();
 
@@ -33,5 +35,11 @@ public class Window extends JFrame {
 
     public void setProgressValue(int id, int val) {
         bars.get(id).setValue(val);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+        bars.get(((Fir) o).id).setValue(((Fir) o).c);
     }
 }

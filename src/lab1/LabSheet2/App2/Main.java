@@ -7,12 +7,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Model model = new Model();
+        Fir fir;
         Window view = new Window(noOfThreads);
-        Controller controller = new Controller(model, view);
+        //Controller controller = new Controller(fir, view);
 
         for (int i = 0; i < noOfThreads; i++) {
-            new Fir(i, i + 2, model, processorLoad).start();
+            fir = new Fir(i, i + 2, processorLoad);
+            fir.addObserver(view);
+            fir.t.start();
         }
     }
 }
